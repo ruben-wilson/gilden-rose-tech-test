@@ -39,21 +39,62 @@ describe("Gilded Rose", function() {
     expect(items[1].sellIn).toBe(0);
     expect(items[1].quality).toBe(2);
   });
-  fit(" 'sulfurs' never decreases in value or sellIn", function() {
+  it(" 'sulfurs' never decreases in value or sellIn", function() {
     const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 0, 36)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Sulfuras, Hand of Ragnaros");
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(50);
   });
+  it(" 'BackStage passes' decrease by 2 after sellIN is less then 10 ", function() {
+    const gildedRose = new Shop([new Item("BackStage passes", 11, 36)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("BackStage passes");
+    expect(items[0].sellIn).toBe(10);
+    expect(items[0].quality).toBe(37);
+    const item_second_time = gildedRose.updateQuality();
+    expect(item_second_time[0].name).toBe("BackStage passes");
+    expect(item_second_time[0].sellIn).toBe(9);
+    expect(item_second_time[0].quality).toBe(39);
+  });
+  it(" 'BackStage passes' decrease by 3 after sellIN is less then 5", function() {
+    const gildedRose = new Shop([new Item("BackStage passes", 6, 36)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("BackStage passes");
+    expect(items[0].sellIn).toBe(5);
+    expect(items[0].quality).toBe(38);
+    const item_second_time = gildedRose.updateQuality();
+    expect(item_second_time[0].name).toBe("BackStage passes");
+    expect(item_second_time[0].sellIn).toBe(4);
+    expect(item_second_time[0].quality).toBe(41);
+  });
+  it(" 'BackStage passes' quality drops to 0 when sellIn is == 0", function() {
+    const gildedRose = new Shop([new Item("BackStage passes", 0, 36)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("BackStage passes");
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(0);
+  });
+  it(" 'BackStage passes' quality drops to 0 when sellIn is == 0", function() {
+    const gildedRose = new Shop([new Item("BackStage passes", 0, 36)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("BackStage passes");
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(0);
+  });
+  it(" 'Conjured' items degrade twice as quick as normal ones", function() {
+    const gildedRose = new Shop([new Item("Conjured", 5, 36)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Conjured");
+    expect(items[0].sellIn).toBe(4);
+    expect(items[0].quality).toBe(34);
+  });
+  it(" 'Conjured' items degrade twice as quick as normal ones", function() {
+    const gildedRose = new Shop([new Item("Conjured", 0, 36)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Conjured");
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(32);
+  });
+
 });
-
-// Once the sell by date has passed, Quality degrades twice as fast
-// The Quality of an item is never negative
-// “Aged Brie” actually increases in Quality the older it gets
-// The Quality of an item is never more than 50
-// “Sulfuras”, being a legendary item, never has to be sold or decreases in Quality
-// “Backstage passes”, like aged brie, increases in Quality as it’s SellIn value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
-// We have recently signed a supplier of conjured items. This requires an update to our system:
-
-// “Conjured” items degrade in Quality twice as fast as normal items
