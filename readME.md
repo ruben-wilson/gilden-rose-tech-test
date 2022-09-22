@@ -29,4 +29,4 @@ const myItems = myShop.updateQuality()
 
 # Planning 
 
-![alt text]()
+![alt text](https://github.com/ruben-wilson/gilden-rose-tech-test/blob/master/gilden-rose.png)
