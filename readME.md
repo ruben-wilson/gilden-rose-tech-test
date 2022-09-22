@@ -1,20 +1,20 @@
-##SET UP 
+## SET UP 
 
 
-#Run + Setup Tests
+# Run + Setup Tests
 ```linux
 npm i jest
 jest
 
 ```
 
-#Run Program 
+# Run Program 
 ```linux
 node ./lib/gilded_rose
 
 ```
 
-#Expected Usage
+# Expected Usage
 ```java script
 const {Shop, Item} = require("../lib/gilded_rose");
 const myShop = new Shop([new Item("foo", 5, 10)])
@@ -27,6 +27,6 @@ const myItems = myShop.updateQuality()
 
 ```
 
-#Planning 
+# Planning 
 
 ![alt text]()
