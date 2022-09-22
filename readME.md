@@ -21,8 +21,8 @@ const myShop = new Shop([new Item("foo", 5, 10)])
 
 const myItems = myShop.updateQuality()
 //=>   items[0].name => "foo"
-//     items[0].sellIn => 19
-//     items[0].quality => 49
+//     items[0].sellIn => 4
+//     items[0].quality => 9
 
 
 ```
